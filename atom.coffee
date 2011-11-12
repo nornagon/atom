@@ -48,6 +48,9 @@ atom.key =
   'DOWN_ARROW': 40
 
 atom.canvas = document.getElementsByTagName('canvas')[0]
+atom.canvas.style.position = "absolute"
+atom.canvas.style.top = "0"
+atom.canvas.style.left = "0"
 atom.context = atom.canvas.getContext '2d'
 
 window.onresize = (e) ->
