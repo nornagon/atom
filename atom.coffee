@@ -119,9 +119,9 @@ class Game
     @loop_interval = null
   step: ->
     now = Date.now()
-    dt = now - @last_step
+    dt = (now - @last_step) / 1000
     @last_step = now
-    @update(dt)
+    @update dt
     @draw()
     atom.input.clearPressed()
 atom.Game = Game
