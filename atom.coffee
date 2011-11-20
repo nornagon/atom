@@ -68,6 +68,9 @@ atom.key =
   RIGHT_ARROW: 39
   DOWN_ARROW: 40
 
+for c in [65..90]
+  atom.key[String.fromCharCode c] = c
+
 eventCode = (e) ->
   if e.type == 'keydown' or e.type == 'keyup'
     e.keyCode
