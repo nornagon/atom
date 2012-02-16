@@ -34,6 +34,7 @@ atom.input = {
 
   pressed: (action) -> @_pressed[action]
   down: (action) -> @_down[action]
+  released: (action) -> (action in @_released)
 
   onmousemove: (e) ->
     @mouse.x = e.pageX
@@ -51,6 +52,7 @@ atom.input = {
 
 document.onkeydown = atom.input.onkeydown.bind(atom.input)
 document.onkeyup = atom.input.onkeyup.bind(atom.input)
+document.onmouseup = atom.input.onmouseup.bind(atom.input)
 
 atom.button =
   LEFT: -1
