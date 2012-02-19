@@ -1,3 +1,11 @@
+requestAnimationFrame = window.requestAnimationFrame or
+  window.webkitRequestAnimationFrame or
+  window.mozRequestAnimationFrame or
+  window.oRequestAnimationFrame or
+  window.msRequestAnimationFrame or
+  (callback) ->
+    window.setTimeout((-> callback 1000 / 60), 1000 / 60)
+
 window.atom = atom = {}
 atom.input = {
   _bindings: {}
@@ -108,17 +116,21 @@ window.onresize()
 
 class Game
   constructor: ->
-    @fps = 30
   update: (dt) ->
   draw: ->
   run: ->
-    @last_step = Date.now()
-    @loop_interval = setInterval =>
+    return if @running
+    @running = true
+
+    s = =>
+      return unless @running
       @step()
-    , 1000/@fps
+      requestAnimationFrame s
+
+    @last_step = Date.now()
+    requestAnimationFrame s
   stop: ->
-    clearInterval @loop_interval if @loop_interval?
-    @loop_interval = null
+    @running = false
   step: ->
     now = Date.now()
     dt = (now - @last_step) / 1000
@@ -126,4 +138,5 @@ class Game
     @update dt
     @draw()
     atom.input.clearPressed()
+
 atom.Game = Game
