@@ -9,8 +9,8 @@ Here's what a game using Atom looks like:
 class Game extends atom.Game
   constructor: ->
     super
-    atom.input.bind atom.key.LEFT, 'left'
-    atom.input.bind atom.key.RIGHT, 'right'
+    atom.input.bind atom.key.LEFT_ARROW, 'left'
+    atom.input.bind atom.key.RIGHT_ARROW, 'right'
 
   update: (dt) ->
     if atom.input.pressed 'left'
