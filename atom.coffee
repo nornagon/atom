@@ -45,8 +45,16 @@ atom.input = {
   released: (action) -> (action in @_released)
 
   onmousemove: (e) ->
-    @mouse.x = e.pageX
-    @mouse.y = e.pageY
+    if window.pageXOffset!= undefined
+      @mouse.x = e.clientX + window.pageXOffset
+      @mouse.y = e.clientY + window.pageYOffset
+    else
+      ev = window.event
+      d = document.documentElement
+      b = document.body
+      @mouse.x = ev.clientX + d.scrollLeft + b.scrollLeft
+      @mouse.y = ev.clientY + d.scrollTop + b.scrollTop    
+      
   onmousedown: (e) -> @onkeydown(e)
   onmouseup: (e) -> @onkeyup(e)
   onmousewheel: (e) ->
