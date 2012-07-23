@@ -6,6 +6,14 @@ requestAnimationFrame = window.requestAnimationFrame or
   (callback) ->
     window.setTimeout((-> callback 1000 / 60), 1000 / 60)
 
+# TODO test this on other browsers
+cancelAnimationFrame = window.cancelAnimationFrame or
+  window.webkitCancelAnimationFrame or
+  window.mozCancelAnimationFrame or
+  window.oCancelAnimationFrame or
+  window.msCancelAnimationFrame or
+  window.clearTimeout
+
 window.atom = atom = {}
 atom.input = {
   _bindings: {}
@@ -123,13 +131,14 @@ class Game
     @running = true
 
     s = =>
-      return unless @running
       @step()
-      requestAnimationFrame s
+      @frameRequest = requestAnimationFrame s
 
     @last_step = Date.now()
-    requestAnimationFrame s
+    @frameRequest = requestAnimationFrame s
   stop: ->
+    cancelAnimationFrame @frameRequest if @frameRequest
+    @frameRequest = null
     @running = false
   step: ->
     now = Date.now()
