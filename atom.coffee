@@ -188,7 +188,7 @@ atom.preloadSounds = (sfx, cb) ->
     do (name, url) ->
       atom.loadSound "sounds/#{url}", (error, buffer) ->
         console.error error if error
-        atom.sfx[s] = buffer if buffer
+        atom.sfx[name] = buffer if buffer
         cb?() unless --toLoad
 
 atom.playSound = (name, time = 0) ->
