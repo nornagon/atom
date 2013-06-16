@@ -85,6 +85,11 @@ atom.key =
   UP_ARROW: 38
   RIGHT_ARROW: 39
   DOWN_ARROW: 40
+  SHIFT: 16
+  CTRL: 17
+  ALT: 18
+  BACKSPACE: 8
+  DELETE: 46
 
 for c in [65..90]
   atom.key[String.fromCharCode c] = c
