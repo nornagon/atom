@@ -2,7 +2,8 @@
 
 # TODO: streaming music
 
-window.atom = atom = {}
+atom = window.atom or {}
+window.atom = atom
 window.AudioContext = window.AudioContext or window.webkitAudioContext
 
 atom.audioContext = new window.AudioContext?()

@@ -14,7 +14,8 @@ cancelAnimationFrame = window.cancelAnimationFrame or
   window.msCancelAnimationFrame or
   window.clearTimeout
 
-window.atom = atom = {}
+atom = window.atom or {}
+window.atom = atom
 atom.input = {
   _bindings: {}
   _down: {}
