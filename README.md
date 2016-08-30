@@ -35,3 +35,6 @@ game.run()
 <script src="atom.js"></script>
 <script src="game.js"></script>
 ```
+
+==== not a library
+atom isn't intended to be used as a library, to be `npm install`ed and `require()`d. It's intended to be a starting point, a nucleus around which you build your game. Copy it into your source folder and tweak it when you need to.
